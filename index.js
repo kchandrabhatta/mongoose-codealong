@@ -6,7 +6,7 @@ const Post = require('./models/post');
 const User = require('./models/user');
 const Comment = require('./models/comment');
 
-const mongoDb = 'mongodb+srv://ijritchey2:organic2@ga.vjaggnl.mongodb.net/mongoose-codealong';
+const mongoDb = 'mongodb+srv://kchandrabhatta:organic2@ga.vjaggnl.mongodb.net/mongoose-codealong';
 
 mongoose.connect(mongoDb, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -127,6 +127,18 @@ app.get('/posts', (req, res) => {
         .then(posts => {
             console.log('All posts', posts);
             res.json({ posts: posts });
+        })
+        .catch(error => {
+            console.log('error', error);
+            res.json({ message: "Error ocurred, please try again" });
+        });
+});
+
+app.get('/posts/:title', (req, res) => {
+    Post.find({})
+        .then(users => {
+            console.log('All users', users);
+            res.json({ users: users });
         })
         .catch(error => {
             console.log('error', error);
